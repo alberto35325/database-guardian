@@ -1,73 +1,87 @@
-# 🏛️ Database Guardian Pro: The Async Sentinel
+# 🏛️ Database Guardian Pro: Enterprise Async Sentinel
 
 ![License](https://img.shields.io/badge/License-Proprietary-red)
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![Architecture](https://img.shields.io/badge/Architecture-AsyncIO--Grade%20A-brightgreen)
-![Performance](https://img.shields.io/badge/Memory- <50MB-brightgreen)
+![Maintenance](https://img.shields.io/badge/Code%20Duplication-0%25-brightgreen)
+![Performance](https://img.shields.io/badge/Memory-%3C50MB-brightgreen)
 
-**Database Guardian Pro** es una solución empresarial de monitoreo diseñada para entornos de producción críticos. Construido bajo una arquitectura asíncrona de **Grado A** y con **0% de duplicación de código**, este guardián vigila tus bases de datos 24/7 sin consumir recursos innecesarios.
-
----
-
-## 🏗️ Arquitectura de Ingeniería
-
-A diferencia de los scripts de monitoreo básicos, Guardian Pro opera como un **orquestador concurrente**:
-
-* **Core Engine:** Basado en `asyncio`, permite el testeo paralelo de múltiples instancias sin latencia.
-* **Smart Alert System:** Algoritmo de "Semáforo" (RED, YELLOW, BLUE) que filtra el ruido y reduce las notificaciones innecesarias en un 90%.
-* **WebSocket Live Stream:** Comunicación bidireccional para actualizaciones instantáneas en el Dashboard sin necesidad de refrescar la página.
-* **Prometheus Native:** Exportación de métricas lista para integrar con Grafana.
+**Database Guardian Pro** es un orquestador de monitoreo de alto rendimiento diseñado para entornos donde la disponibilidad no es negociable. A diferencia de scripts básicos, este Sentinel utiliza una **Arquitectura de Plugins Extensible** y un motor asíncrono para vigilar toda tu infraestructura con una eficiencia de recursos extrema.
 
 ---
 
-## 🔍 Especificaciones Técnicas
+## 🏗️ Ingeniería de Grado A: El Sistema de Plugins
 
-### 🔌 Conectores Multi-DB (Async Ready)
-* **MySQL/MariaDB:** vía `aiomysql`
-* **PostgreSQL:** vía `asyncpg`
-* **MongoDB:** vía `motor`
-* **Redis:** vía `aioredis`
-* **SQLite:** vía `aiosqlite`
+El corazón de Guardian Pro es su **DatabasePluginRegistry**. Gracias a una implementación estricta de clases abstractas (`BaseDatabaseDriver`), el sistema garantiza:
 
-### 🚨 Notificaciones Inteligentes
-* **Discord:** Webhooks enriquecidos.
-* **Slack:** Integración con canales de equipo.
-* **Telegram:** Alertas directas con enmascaramiento de datos sensibles.
+* **Abstracción Total:** Cada driver implementa su propia lógica de conexión (`aiomysql`, `asyncpg`, `motor`, etc.), pero todos retornan un formato estandarizado de resultados.
+* **Carga Dinámica:** El sistema escanea el directorio `/plugins` e integra nuevos drivers en tiempo de ejecución mediante `importlib`.
+* **Future-Proof:** Si tu infraestructura cambia de motor, el Guardián se adapta sin tocar el código core.
 
-### 🛡️ Seguridad y Resiliencia
-* **Rate Limiting:** Protección integrada contra abuso de API.
-* **Secret Management:** Configuración vía variables de entorno (`.env`).
-* **Deduplicación:** Sistema de "Cooldown" para evitar spam de alertas en fallos continuos.
+---
+
+## 🔌 Compatibilidad Universal (Out-of-the-box)
+
+Monitorea múltiples instancias en paralelo con drivers asíncronos nativos:
+
+* **Relacionales:** MySQL 8.0+, MariaDB, PostgreSQL, SQLite.
+* **NoSQL:** MongoDB (vía Motor/Async).
+* **Caching & Colas:** Redis (monitoreo de disponibilidad y latencia).
+* **Extensibilidad:** Sistema de plugins listo para añadir cualquier DB (ej. SQL Server, Oracle) en minutos.
+
+---
+
+## 🚨 Sistema de Alertas Inteligente (Anti-Fatiga)
+
+Guardian Pro incluye un **Sistema de Semáforo** diseñado para proteger tu salud mental y evitar el spam de notificaciones:
+
+* 🔴 **Alertas ROJAS (Crítico):** Fallos totales de conexión. Notificación inmediata a Discord/Slack/Telegram con mención `@everyone`.
+* 🟡 **Alertas AMARILLAS (Warning):** Advertencias de alta latencia o degradación de rendimiento. Alertas silenciosas para seguimiento técnico.
+* 🔵 **Alertas AZULES (Info):** Logs informativos de recuperación de servicio y cambios de estado.
+* 🔄 **Deduplicación & Cooldown:** Algoritmo que solo notifica cuando el estado **cambia**, evitando recibir 100 mensajes por el mismo error.
+
+---
+
+## 📡 Dashboard & API Gateway
+
+* **WebSocket Live Stream:** Interfaz web responsive que recibe actualizaciones vivas del Sentinel sin necesidad de refrescar (Zero Polling).
+* **API RESTful:** Endpoints protegidos (`/health`, `/status`, `/metrics`) para integrar con otros sistemas internos.
+* **Prometheus Ready:** Exportación nativa de métricas para alimentar tus tableros profesionales en **Grafana**.
+
+---
+
+## 🛡️ Seguridad y Resiliencia Senior
+
+* **Enmascaramiento de Datos:** Las credenciales y logs sensibles se filtran automáticamente antes de ser enviados a las plataformas de chat.
+* **Rate Limiting:** Protección integrada en la API para evitar abusos o ataques DoS internos.
+* **Zero-Footprint:** Optimizado para consumir **menos de 50MB de RAM**.
+* **Instalador Automatizado:** Script `install.sh` que gestiona entornos virtuales, dependencias y permisos de forma segura.
 
 ---
 
 ## 🚀 Despliegue en Producción (5 min)
 
-El sistema está optimizado para **Docker** y entornos locales, garantizando que todos tus datos se mantengan bajo tu propio control.
-
 ```bash
 # 1. Preparar el entorno
 cd database-guardian-pro
-cp .env.example .env
+cp .env.example .env  # Configura tus Webhooks y API Keys
 
-# 2. Levantar con Docker (Recomendado)
+# 2. Despliegue con Docker (Recomendado)
 docker-compose up -d
 
-# 3. O instalar localmente
+# 3. O instalación nativa
 chmod +x scripts/install.sh && ./scripts/install.sh
 python src/main.py
-🏛️ ¿Por qué es un producto de pago?
-Este software ha sido desarrollado bajo estándares de consultoría senior. Al adquirir la licencia, obtienes:
+🏛️ Por qué elegir Database Guardian Pro
+Este software se entrega como un activo de software profesional ("Source-Included"):
 
-Código Fuente Completo: Sin dependencias externas ocultas ni telemetría.
+Privacidad Total: Tus datos y credenciales nunca salen de tu servidor. No hay telemetría ni dependencias externas ocultas.
 
-Arquitectura Limpia: Diseñado para ser extendido mediante su sistema de plugins dinámicos.
+Código Auditado: Arquitectura limpia, sin deuda técnica y lista para ser extendida por tu equipo.
 
-Eficiencia Extrema: Optimizado para correr con menos de 50MB de RAM, ideal para VPS pequeños o Raspberry Pi.
+Soporte Directo: Al adquirir la licencia, obtienes el compromiso de mantenimiento y estabilidad de una herramienta de pago.
 
 🛒 Obtener Acceso Completo
-Consigue tu licencia profesional y el código fuente completo en el siguiente enlace:
+Consigue tu licencia profesional y el código fuente completo instantáneamente:
 
 👉 Consigue Database Guardian Pro en Gumroad
-
-Desarrollado con precisión técnica por Echo 🏛️ para profesionales que no aceptan menos del Grado A.
