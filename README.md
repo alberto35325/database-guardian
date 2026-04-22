@@ -1,83 +1,85 @@
+Here is the updated README in professional, high-level English. I’ve focused on "Power Verbs" and technical clarity to ensure it justifies the $29 price point and appeals to serious SysAdmins and Developers.
+
 🏛️ Database Guardian Pro: Enterprise Async Sentinel
-Database Guardian Pro es un orquestador de monitoreo de alto rendimiento diseñado para entornos donde la disponibilidad no es negociable. A diferencia de scripts básicos, este Sentinel utiliza una Arquitectura de Plugins Extensible y un motor asíncrono para vigilar toda tu infraestructura con una eficiencia de recursos extrema.
+Database Guardian Pro is a high-performance monitoring orchestrator engineered for environments where uptime is non-negotiable. Unlike basic scripts, this Sentinel leverages a Strictly Extensible Plugin Architecture and an asynchronous engine to oversee your entire infrastructure with extreme resource efficiency.
 
-🏗️ Ingeniería de Grado A: El Sistema de Plugins
-El corazón de Guardian Pro es su DatabasePluginRegistry. Gracias a una implementación estricta de clases abstractas (BaseDatabaseDriver), el sistema garantiza:
+🏗️ Grade-A Engineering: The Plugin System
+At the core of Guardian Pro lies the DatabasePluginRegistry. Built on a rigorous implementation of abstract base classes (BaseDatabaseDriver), the system guarantees:
 
-Abstracción Total: Cada driver implementa su propia lógica de conexión (aiomysql, asyncpg, motor, etc.), pero todos retornan un formato estandarizado de resultados.
+Total Abstraction: Every driver manages its own connection logic (aiomysql, asyncpg, motor, etc.) while returning standardized, high-integrity results.
 
-Carga Dinámica: El sistema escanea el directorio /plugins e integra nuevos drivers en tiempo de ejecución mediante importlib.
+Dynamic Loading: The system hot-scans the /plugins directory and integrates new drivers at runtime using importlib.
 
-Future-Proof: Si tu infraestructura cambia de motor, el Guardián se adapta sin tocar el código core.
+Future-Proof: If your stack evolves, the Guardian adapts without a single line of core code being touched.
 
-🛡️ FUNCIONALIDAD ESTRELLA: Docker Restore Check 🆕
-La mayor pesadilla de un SysAdmin es un backup corrupto que parece "exitoso". Guardian Pro elimina este riesgo con su sistema de Validación End-to-End:
+🛡️ FLAGSHIP FEATURE: Docker Restore Check 🆕
+A SysAdmin’s worst nightmare is a "successful" backup that fails during a crisis. Guardian Pro eliminates "Ghost Backups" with its End-to-End Validation Engine:
 
-Sandbox Efímero: Tras generar un backup, el sistema levanta automáticamente un contenedor Docker aislado.
+Ephemeral Sandboxing: Upon backup completion, the system automatically spins up an isolated Docker container.
 
-Integridad Real: Intenta realizar una restauración completa del archivo .sql en el sandbox.
+Real-World Restoration: It performs a full restore of the .sql file within the sandbox.
 
-Certificación de Éxito: Solo si la base de datos se restaura correctamente y se valida su estructura, el backup se marca como válido.
+Integrity Certification: Only backups that successfully restore and pass structural validation are flagged as "Healthy."
 
-Auto-Cleanup: El entorno de prueba se destruye instantáneamente después del test, dejando tu servidor limpio.
+Zero-Footprint Cleanup: The test environment is instantly destroyed, keeping your production server lean and clean.
 
-🔌 Compatibilidad Universal (Out-of-the-box)
-Monitorea múltiples instancias en paralelo con drivers asíncronos nativos:
+🔌 Universal Compatibility (Out-of-the-box)
+Monitor multiple instances in parallel with native asynchronous drivers:
 
-Relacionales: MySQL 8.0+, MariaDB, PostgreSQL, SQLite.
+Relational: MySQL 8.0+, MariaDB, PostgreSQL, SQLite.
 
-NoSQL: MongoDB (vía Motor/Async).
+NoSQL: MongoDB (via Motor/Async).
 
-Caching & Colas: Redis (monitoreo de disponibilidad y latencia).
+Caching & Queues: Redis (latency and availability monitoring).
 
-Extensibilidad: Sistema de plugins listo para añadir cualquier DB (ej. SQL Server, Oracle, Elasticsearch) en minutos.
+Extensibility: Plugin-ready for any DB (e.g., SQL Server, Oracle, Elasticsearch) in minutes.
 
-🚨 Sistema de Alertas Inteligente (Anti-Fatiga)
-Guardian Pro incluye un Sistema de Semáforo diseñado para proteger tu salud mental y evitar el spam de notificaciones:
+🚨 Intelligent Alerting (Anti-Fatigue System)
+Guardian Pro features a Traffic-Light Alerting System designed to protect your mental health and eliminate notification spam:
 
-🔴 Alertas ROJAS (Crítico): Fallos totales de conexión. Notificación inmediata a Discord/Slack/Telegram con mención @everyone.
+🔴 RED Alerts (Critical): Total connection failure. Instant notification to Discord/Slack/Telegram with @everyone mentions.
 
-🟡 Alertas AMARILLAS (Warning): Advertencias de alta latencia o degradación de rendimiento.
+🟡 YELLOW Alerts (Warning): High latency or performance degradation detected.
 
-🔵 Alertas AZULES (Info): Logs de recuperación de servicio y cambios de estado.
+🔵 BLUE Alerts (Info): Recovery logs and state change confirmations.
 
-🔄 Deduplicación & Cooldown: Algoritmo que reduce el ruido en un 90%, notificando solo cuando el estado realmente cambia.
+🔄 Deduplication & Cooldown: Advanced algorithm that reduces noise by 90%, notifying you only when the status actually changes.
 
 📡 Dashboard & API Gateway
-WebSocket Live Stream: Interfaz web responsive que recibe actualizaciones en vivo del Sentinel con Zero Polling.
+WebSocket Live Stream: Responsive web interface receiving real-time updates with Zero Polling.
 
-API RESTful Segura: Endpoints protegidos (/health, /status, /metrics) con autenticación mediante API Keys y Rate Limiting.
+Secure RESTful API: Protected endpoints (/health, /status, /metrics) featuring API Key Authentication and Rate Limiting.
 
-Prometheus Ready: Exportación nativa de métricas para alimentar tus tableros profesionales en Grafana.
+Prometheus Ready: Native metrics export to power your professional Grafana dashboards.
 
-🛠️ Configuración Modular & Despliegue Senior
-Arquitectura Multi-Entorno: Gestión de configuración optimizada para entornos de Desarrollo, Staging y Producción.
+🛠️ Modular Config & Senior Deployment
+Multi-Environment Architecture: Optimized configuration management for Dev, Staging, and Production.
 
-Zero-Footprint: Optimizado para consumir menos de 50MB de RAM.
+Ultralight Execution: Optimized to consume less than 50MB of RAM.
 
-Docker Ready: Dockerfile multi-stage optimizado y docker-compose.yml listo para producción con Prometheus y Redis incluidos.
+Docker Ready: Multi-stage Dockerfile and docker-compose.yml pre-configured with Prometheus and Redis.
 
-🚀 Despliegue en Producción (5 min)
+🚀 Production Deployment (5 min)
 Bash
-# 1. Preparar el entorno
+# 1. Prepare environment
 cd database-guardian-pro
-cp .env.example .env  # Configura tus Webhooks y API Keys
+cp .env.example .env  # Configure your Webhooks and API Keys
 
-# 2. Despliegue con Docker (Recomendado)
+# 2. Deploy with Docker (Recommended)
 docker-compose up -d
 
-# 3. O ejecución manual del Restore Check
+# 3. Or manually trigger a Restore Check
 ./tools/restore_check/restore_check.sh backup.sql
-🏛️ Por qué elegir Database Guardian Pro
-Este software se entrega como un activo de software profesional ("Source-Included"):
+🏛️ Why Database Guardian Pro?
+This software is delivered as a professional "Source-Included" asset:
 
-Privacidad Total: Tus datos y credenciales nunca salen de tu servidor.
+Total Privacy: Your credentials and data never leave your server.
 
-Validación Real: Somos de los pocos que prueban la restauración de tus backups automáticamente.
+Verified Confidence: We are among the few tools that automatically prove your backups work.
 
-Código Auditado: Arquitectura limpia, sin deuda técnica y lista para ser extendida.
+Audited Code: Clean, debt-free architecture ready for enterprise scaling.
 
-🛒 Obtener Acceso Completo
-Consigue tu licencia profesional y el código fuente completo instantáneamente:
+🛒 Get Full Access
+Secure your professional license and the complete source code instantly:
 
-👉 Consigue Database Guardian Pro en Gumroad: https://operao.gumroad.com/l/ytuyep
+👉 Get Database Guardian Pro on Gumroad: https://operao.gumroad.com/l/ytuyep
