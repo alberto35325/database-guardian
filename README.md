@@ -55,6 +55,13 @@ Guardian Pro features a **Traffic-Light Alerting System** designed to protect yo
 * **Secure RESTful API:** Protected endpoints (`/health`, `/status`, `/metrics`) featuring **API Key Authentication** and **Rate Limiting**.
 * **Prometheus Ready:** Native metrics export to power your professional **Grafana** dashboards.
 
+---
+
+## 🛒 Commercial License & Source Code
+
+Secure your professional license and get the complete, audited source code instantly:
+
+👉 **[Get Database Guardian Pro on Gumroad](https://operao.gumroad.com/l/ytuyep)**
 
 ---
 
