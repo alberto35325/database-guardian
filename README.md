@@ -2,6 +2,20 @@
 
 **Database Guardian Pro** is a high-performance monitoring orchestrator engineered for environments where uptime is non-negotiable. Unlike basic scripts, this Sentinel leverages a **Strictly Extensible Plugin Architecture** and an asynchronous engine to oversee your entire infrastructure with extreme resource efficiency.
 
+🏛️ Why Database Guardian Pro?
+This software is delivered as a professional "Source-Included" asset:
+
+Total Privacy: Your credentials and data never leave your server.
+
+Verified Confidence: We are among the few tools that automatically prove your backups work.
+
+Audited Code: Clean, debt-free architecture ready for enterprise scaling.
+
+🛒 Get Full Access
+Secure your professional license and the complete source code instantly:
+
+👉 Get Database Guardian Pro on Gumroad
+
 ---
 
 ## 🏗️ Grade-A Engineering: The Plugin System
@@ -134,18 +148,3 @@ docker-compose up -d
 
 # 3. Or manually trigger a Restore Check
 ./tools/restore_check/restore_check.sh backup.sql
-
-
-🏛️ Why Database Guardian Pro?
-This software is delivered as a professional "Source-Included" asset:
-
-Total Privacy: Your credentials and data never leave your server.
-
-Verified Confidence: We are among the few tools that automatically prove your backups work.
-
-Audited Code: Clean, debt-free architecture ready for enterprise scaling.
-
-🛒 Get Full Access
-Secure your professional license and the complete source code instantly:
-
-👉 Get Database Guardian Pro on Gumroad
