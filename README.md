@@ -1,81 +1,57 @@
-# 🏛️ Database Guardian Pro: Enterprise Async Sentinel
+Mismo problema que antes — "Enterprise Async Sentinel", "Grade-A Engineering", "Ghost Backups", "Bit Rot", la cita final con vino y rosa. Es el lenguaje dramático de nuevo.
+Aquí tienes el README reescrito, directo y técnico:
 
-**Database Guardian Pro** is a high-performance monitoring orchestrator engineered for environments where uptime is non-negotiable. Unlike basic scripts, this Sentinel leverages a **Strictly Extensible Plugin Architecture** and an asynchronous engine to oversee your entire infrastructure with extreme resource efficiency.
+markdown# Database Guardian Pro
 
----
+Real-time database health monitoring + automated backup verification 
+via ephemeral Docker containers.
 
-## 🏗️ Grade-A Engineering: The Plugin System
+## What it does
 
-At the core of Guardian Pro lies the `DatabasePluginRegistry`. Built on a rigorous implementation of abstract base classes (`BaseDatabaseDriver`), the system guarantees:
+**Monitoring**: Connects to MySQL, PostgreSQL, MongoDB, Redis and SQLite. 
+Checks connectivity and response times every 30 seconds. Streams live 
+status to a web dashboard via WebSocket. Alerts Discord, Slack or Telegram 
+only when state changes.
 
-* **Total Abstraction:** Every driver manages its own connection logic (`aiomysql`, `asyncpg`, `motor`, etc.) while returning standardized, high-integrity results.
-* **Dynamic Loading:** The system hot-scans the `/plugins` directory and integrates new drivers at runtime using `importlib`.
-* **Future-Proof:** If your stack evolves, the Guardian adapts without a single line of core code being touched.
+**Backup verification**: Every week, takes your most recent backup, spins 
+up an isolated Docker container, restores it, runs integrity checks, and 
+destroys the container. Every month, audits a random sample of the last 
+6 months. A backup is not marked valid until it has been restored in a 
+live environment.
 
----
+## The problem it solves
 
-## 🛡️ FLAGSHIP FEATURE: Docker Restore Check 🆕
+Most backup scripts confirm the dump was written to disk. That's not 
+enough — you find out the backup is corrupt during the emergency, not 
+before it.
 
-A SysAdmin’s worst nightmare is a "successful" backup that fails during a crisis. Guardian Pro eliminates **"Ghost Backups"** with its End-to-End Validation Engine:
+## Stack
 
-* **Ephemeral Sandboxing:** Upon backup completion, the system automatically spins up an isolated Docker container.
-* **Real-World Restoration:** It performs a full restore of the `.sql` file within the sandbox.
-* **Multi-Layer Integrity Audits:**
-    * **Weekly Health Check:** Automated validation of the most recent backup.
-    * **Periodic Legacy Audit:** Scheduled sampling of older history to verify long-term compatibility and prevent "Bit Rot."
-* **Zero-Footprint Cleanup:** The test environment is instantly destroyed, keeping your production server lean and clean.
+- Python + asyncio
+- Docker SDK
+- WebSocket (live dashboard)
+- REST API with API key auth and rate limiting
+- Prometheus metrics + Grafana dashboards included
 
----
+## Supported databases
 
-## 🔌 Universal Compatibility (Out-of-the-box)
+MySQL · MariaDB · PostgreSQL · SQLite · MongoDB · Redis
 
-Monitor multiple instances in parallel with native asynchronous drivers:
+## Quick start
 
-* **Relational:** MySQL 8.0+, MariaDB, PostgreSQL, SQLite.
-* **NoSQL:** MongoDB (via Motor/Async).
-* **Caching & Queues:** Redis (latency and availability monitoring).
-* **Extensibilidad:** Plugin-ready for any DB (e.g., SQL Server, Oracle, Elasticsearch) in minutes.
-
----
-
-## 🚨 Intelligent Alerting (Anti-Fatigue System)
-
-Guardian Pro features a **Traffic-Light Alerting System** designed to protect your mental health and eliminate notification spam:
-
-* 🔴 **RED Alerts (Critical):** Total connection failure. Instant notification to Discord/Slack/Telegram with `@everyone` mentions.
-* 🟡 **YELLOW Alerts (Warning):** High latency or performance degradation detected.
-* 🔵 **BLUE Alerts (Info):** Recovery logs and state change confirmations.
-* 🔄 **Deduplication & Cooldown:** Advanced algorithm that reduces noise by 90%, notifying you only when the status *actually* changes.
-
----
-
-## 📡 Dashboard & API Gateway
-
-* **WebSocket Live Stream:** Responsive web interface receiving real-time updates with **Zero Polling**.
-* **Secure RESTful API:** Protected endpoints (`/health`, `/status`, `/metrics`) featuring **API Key Authentication** and **Rate Limiting**.
-* **Prometheus Ready:** Native metrics export to power your professional **Grafana** dashboards.
-
----
-
-## 🛒 Commercial License & Source Code
-
-Secure your professional license and get the complete, audited source code instantly:
-
-👉 **[Get Database Guardian Pro on Gumroad](https://operao.gumroad.com/l/ytuyep)**
-
----
-
-## 🚀 Production Deployment (5 min)
-
-### 1. Prepare environment
-```bash
-git clone [https://github.com/alberto35325/database-guardian.git](https://github.com/alberto35325/database-guardian.git)
+git clone https://github.com/alberto35325/database-guardian.git
 cd database-guardian
-cp .env.example .env  # Configure your Webhooks and API Keys
-2. Deploy with Docker (Recommended)
-Bash
+cp config/config.example.json config/config.json
 docker-compose up -d
-3. Manual Restore Check
-Bash
+
+Dashboard available at http://127.0.0.1:8080
+
+## Manual backup verification
+
 ./tools/restore_check/restore_check.sh backup.sql
-"In a world of scattered info, be the Guardian of the truth." 🍷🌹
+
+## License
+
+Commercial license available on Gumroad — includes full source code, 
+Docker Compose setup, Grafana dashboards, and Nginx config.
+https://operao.gumroad.com/l/ytuyep
