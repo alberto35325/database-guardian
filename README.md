@@ -63,6 +63,7 @@ docker-compose up -d
 
 # 3. Or manually trigger a Restore Check
 ./tools/restore_check/restore_check.sh backup.sql
+
 🏛️ Why Database Guardian Pro?
 This software is delivered as a professional "Source-Included" asset:
 
