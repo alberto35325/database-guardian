@@ -1,8 +1,3 @@
-Mismo problema que antes — "Enterprise Async Sentinel", "Grade-A Engineering", "Ghost Backups", "Bit Rot", la cita final con vino y rosa. Es el lenguaje dramático de nuevo.
-Aquí tienes el README reescrito, directo y técnico:
-
-markdown# Database Guardian Pro
-
 Real-time database health monitoring + automated backup verification 
 via ephemeral Docker containers.
 
